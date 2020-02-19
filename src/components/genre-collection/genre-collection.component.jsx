@@ -22,7 +22,6 @@ export const GenreCollection = () => {
     );
 
     return () => (isCurrent = false);
-    console.log(response);
   }, []);
 
   console.log(data);
