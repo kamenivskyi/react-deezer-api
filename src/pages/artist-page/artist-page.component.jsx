@@ -1,44 +1,69 @@
 import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+
 import { fetchData } from '../../utils/fetchData';
+import { settings } from '../../utils/slick.settings';
 
 export const ArtistPage = ({ match }) => {
   const [data, setData] = useState(null);
+  const [tracks, setTracks] = useState(null);
 
   useEffect(() => {
-    fetchData(`https://api.deezer.com/artist/${match.params.id}`).then(res =>
-      setData(res)
-    );
+    const { id } = match.params;
 
-    if (data) {
-      fetchData(
-        `https://api.deezer.com/artist/${data.id}/top?limit=50`
-      ).then(res => console.log(res));
-    }
+    fetchData(`https://api.deezer.com/artist/${id}`).then(res => setData(res));
+
+    fetchData(`https://api.deezer.com/artist/${id}/top?limit=50`).then(res =>
+      setTracks(res.data)
+    );
   }, []);
 
   console.log(data);
 
   if (!data) return null;
 
+  console.log(tracks);
+
   return (
-    <div className='col s12 m7'>
-      <h2 className='header'>Horizontal Card</h2>
-      <div className='card horizontal'>
-        <div className='card-image'>
-          <img src={data.picture_big} />
-        </div>
-        <div className='card-stacked'>
-          <div className='card-content'>
-            <p>
-              I am a very simple card. I am good at containing small bits of
-              information.
-            </p>
+    <div>
+      <div className='col s12 m7'>
+        <h2 className='header'>Horizontal Card</h2>
+        <div className='card horizontal'>
+          <div className='card-image'>
+            <img src={data.picture_big} />
           </div>
-          <div className='card-action'>
-            <a href='#'>This is a link</a>
+          <div className='card-stacked'>
+            <div className='card-content'>
+              <p>Albums: {data.nb_album}</p>
+              <p>Fans: {data.nb_fan}</p>
+              <p>
+                I am a very simple card. I am good at containing small bits of
+                information.
+              </p>
+            </div>
+            <div className='card-action'>
+              <a href='#'>This is a link</a>
+            </div>
           </div>
         </div>
       </div>
+      <ul className='collection with-header'>
+        <li className='collection-header'>
+          <h4>Top tracks</h4>
+        </li>
+
+        {/* {tracks && (
+          <Slider {...settings}>
+            tracks.map(item => (
+              <li className='collection-item' key={`track${item.id}`}>
+                <h5>{item.title}</h5>
+
+                <audio src={item.preview} controls></audio>
+              </li>
+            ))
+          </Slider>
+        )} */}
+      </ul>
     </div>
   );
 };

@@ -4,8 +4,8 @@ import { GenreCollection } from '../../components/genre-collection/genre-collect
 
 export const HomePage = () => {
   return (
-    <div>
+    <>
       <GenreCollection />
-    </div>
+    </>
   );
 };

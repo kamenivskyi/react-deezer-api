@@ -1,0 +1,25 @@
+body {
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  padding: 0 10px;
+}
+
+.slick-next {
+  right: 7px;
+}
+.slick-prev {
+  left: auto;
+  right: 35px;
+}
+.slick-prev,
+.slick-next {
+  top: -6px;
+  z-index: 10;
+  color: tomato !important;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: tomato;
+}

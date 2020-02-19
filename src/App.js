@@ -5,9 +5,10 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { Header } from './components/header/header.component';
-
 import { GenrePage } from './pages/genre-page/genre-page.component';
 import { HomePage } from './pages/home-page/home-page.componnt';
 import { ArtistPage } from './pages/artist-page/artist-page.component';
