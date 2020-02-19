@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import M from 'materialize-css/dist/js/materialize.min.js';
 // import 'materialize-css/dist/js/materialize.min.js';
 
@@ -6,7 +7,9 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'material-icons/iconfont/material-icons.css';
 
 import { Header } from './components/header/header.component';
-import { GenreCollection } from './components/genre-collection/genre-collection.component';
+
+import { GenrePage } from './pages/genre-page/genre-page.component';
+import { HomePage } from './pages/home-page/home-page.componnt';
 
 import './App.css';
 
@@ -19,7 +22,10 @@ const App = () => {
     <div className='App'>
       <Header />
       <div className='container-fluid'>
-        <GenreCollection />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/genre:id' component={GenrePage} />
+        </Switch>
       </div>
     </div>
   );
