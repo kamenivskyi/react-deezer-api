@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './header.styles.scss';
 
 export const Header = () => {
   return (
     <header className='App-header'>
-      <nav className='indigo'>
+      <nav className='indigo' style={{ padding: '0 10px' }}>
         <div className='nav-wrapper'>
-          <a href='#!' className='brand-logo'>
+          <Link to='/' className='brand-logo'>
             Logo
-          </a>
+          </Link>
           <a href='#' data-target='mobile-demo' className='sidenav-trigger'>
             <i className='material-icons'>menu</i>
           </a>
