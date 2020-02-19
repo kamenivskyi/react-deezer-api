@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './collection-item.styles.scss';
 
-export const CollectionItem = ({ name, picture_big, type, id }) => {
-  console.log(picture_big);
+export const CollectionItem = ({ item, linkTo }) => {
+  const { name, picture_big, type, id } = item;
+
   return (
     <div
       className='collection-item card'
@@ -15,7 +16,9 @@ export const CollectionItem = ({ name, picture_big, type, id }) => {
         <span>{type}</span>
       </div>
       <div className='card-action'>
-        <Link to={`/genre${id}`}>Search by genre</Link>
+        <Link to={linkTo + id} className='waves-effect indigo waves-light btn'>
+          More info
+        </Link>
       </div>
     </div>
   );

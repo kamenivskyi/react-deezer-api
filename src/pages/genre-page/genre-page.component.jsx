@@ -26,7 +26,7 @@ export const GenrePage = ({
       <div className='row'>
         {artists.map(artist => (
           <div className='col s12 m6 l3' key={`genre${artist.id}`}>
-            <CollectionItem {...artist} />
+            <CollectionItem item={artist} linkTo={'/artist/'} />
           </div>
         ))}
       </div>

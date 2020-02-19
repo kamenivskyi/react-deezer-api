@@ -24,7 +24,7 @@ export const GenreCollection = () => {
     <div className='row'>
       {data.map(item => (
         <div className='col s12 m6 l3' key={`genre${item.id}`}>
-          <CollectionItem {...item} />
+          <CollectionItem linkTo={'/genre/'} item={item} />
         </div>
       ))}
     </div>

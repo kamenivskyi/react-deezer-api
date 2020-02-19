@@ -10,6 +10,7 @@ import { Header } from './components/header/header.component';
 
 import { GenrePage } from './pages/genre-page/genre-page.component';
 import { HomePage } from './pages/home-page/home-page.componnt';
+import { ArtistPage } from './pages/artist-page/artist-page.component';
 
 import './App.css';
 
@@ -24,7 +25,8 @@ const App = () => {
       <div className='container-fluid'>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/genre:id' component={GenrePage} />
+          <Route exact path='/genre/:id' component={GenrePage} />
+          <Route exact path='/artist/:id' component={ArtistPage} />
         </Switch>
       </div>
     </div>
