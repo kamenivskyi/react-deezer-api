@@ -11,10 +11,17 @@ export const GenreCollection = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const response = fetchData('https://api.deezer.com/genre').then(response =>
-      setData(response.data)
+    let isCurrent = true;
+
+    const response = fetchData('https://api.deezer.com/genre').then(
+      response => {
+        if (isCurrent) {
+          setData(response.data);
+        }
+      }
     );
 
+    return () => (isCurrent = false);
     console.log(response);
   }, []);
 

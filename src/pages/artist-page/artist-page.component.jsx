@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 
 import { fetchData } from '../../utils/fetchData';
-import { settings } from '../../utils/slick.settings';
 
 export const ArtistPage = ({ match }) => {
   const [data, setData] = useState(null);
   const [tracks, setTracks] = useState(null);
 
   useEffect(() => {
+    let isCurrent = true;
+
     const { id } = match.params;
 
-    fetchData(`https://api.deezer.com/artist/${id}`).then(res => setData(res));
+    fetchData(`https://api.deezer.com/artist/${id}`).then(res => {
+      if (isCurrent) {
+        setData(res);
+      }
+    });
 
-    fetchData(`https://api.deezer.com/artist/${id}/top?limit=50`).then(res =>
-      setTracks(res.data)
-    );
+    fetchData(`https://api.deezer.com/artist/${id}/top?limit=50`).then(res => {
+      if (isCurrent) {
+        setTracks(res.data);
+      }
+    });
+
+    return () => (isCurrent = false);
   }, []);
 
   console.log(data);
@@ -52,17 +60,14 @@ export const ArtistPage = ({ match }) => {
           <h4>Top tracks</h4>
         </li>
 
-        {/* {tracks && (
-          <Slider {...settings}>
-            tracks.map(item => (
-              <li className='collection-item' key={`track${item.id}`}>
-                <h5>{item.title}</h5>
+        {tracks &&
+          tracks.map(item => (
+            <li className='collection-item' key={`track${item.id}`}>
+              <h5>{item.title}</h5>
 
-                <audio src={item.preview} controls></audio>
-              </li>
-            ))
-          </Slider>
-        )} */}
+              <audio src={item.preview} controls></audio>
+            </li>
+          ))}
       </ul>
     </div>
   );

@@ -13,9 +13,15 @@ export const GenrePage = ({
   const [artists, setArtists] = useState(null);
 
   useEffect(() => {
-    fetchData(`https://api.deezer.com/genre/${id}/artists`).then(res =>
-      setArtists(res.data)
-    );
+    let isCurrent = true;
+
+    fetchData(`https://api.deezer.com/genre/${id}/artists`).then(res => {
+      if (isCurrent) {
+        setArtists(res.data);
+      }
+    });
+
+    return () => (isCurrent = false);
   }, []);
 
   console.log(artists);
